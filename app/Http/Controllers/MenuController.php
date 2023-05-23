@@ -7,17 +7,11 @@ use App\Models\ItemCategory;
 
 class MenuController extends Controller
 {
-    public function index(?ItemCategory $itemCategory = null)
+    public function index()
     {
-        // TODO: 複雑化したらRepositoryパターンにする
-        $itemCategories = ItemCategory::get();
-        $items = empty($itemCategory)
-            ? Item::get()
-            : Item::where('item_category_id', $itemCategory->id)->get();
-
-        return view('menu', array_merge(
-            ['selectedItemCategory' => $itemCategory],
-            compact('itemCategories', 'items')
-        ));
+        return view('menu', [
+            'itemCategories' => ItemCategory::get(),
+            'items' => Item::get(),
+        ]);
     }
 }

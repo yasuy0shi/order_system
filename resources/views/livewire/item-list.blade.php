@@ -2,9 +2,9 @@
     @foreach ($items as $item)
     <div class="col">
         <div class="card h-100">
-            <img src="{{ asset('img/noimage.png')}}" class="card-img-top">
+            <img src="{{ asset('img/noimage.png') }}" class="card-img-top">
             <div class="card-body">
-                <h5 class="card-title">{{ $item->name }}</h5>
+                <h4 class="card-title">{{ $item->name }}</h4>
                 @if (!empty($item->description))
                 <p class="card-subtitle small">{{ $item->description }}</p>
                 @endif

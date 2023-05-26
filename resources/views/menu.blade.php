@@ -4,6 +4,7 @@
 <head>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
     <title>Menu</title>
 
@@ -15,7 +16,8 @@
     <header>
         <nav class="navbar fixed-top navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Menu</a>
+                <a class="navbar-brand" href="/">メニュー</a>
+                @livewire('toggle-cart')
             </div>
         </nav>
     </header>
@@ -27,6 +29,7 @@
         @livewire('item-list', [
             'items' => $items,
         ])
+        @livewire('cart')
     </div>
 
     @livewireScripts

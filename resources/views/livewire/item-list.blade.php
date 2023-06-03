@@ -1,5 +1,5 @@
 <div class="row row-cols-2 row-cols-md-3 g-3">
-    @foreach ($items as $item)
+    @foreach ($filteredItems as $item)
     <div class="col">
         <div class="card h-100">
             <img src="{{ asset('img/noimage.png') }}" class="card-img-top">
@@ -9,6 +9,7 @@
                 <p class="card-subtitle small">{{ $item->description }}</p>
                 @endif
                 <p class="card-text">¥{{ number_format($item->price) }}</p>
+                <a class="stretched-link" wire:click="onItemClicked({{ $item }})"></a>
             </div>
         </div>
     </div>

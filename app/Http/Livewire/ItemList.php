@@ -13,7 +13,7 @@ class ItemList extends Component
      *
      * @var Collection<Item>
      */
-    public Collection $items;
+    public Collection $filteredItems;
 
     /**
      * 商品カテゴリID
@@ -27,7 +27,7 @@ class ItemList extends Component
      *
      * @var array
      */
-    protected $listeners = ['onItemCategoryTabClicked'];
+    protected $listeners = ['onItemCategoryTabClicked', 'onItemClicked'];
 
     /**
      * コンポーネントがインスタンス化された直後に呼ばれるライフサイクルフック
@@ -38,19 +38,24 @@ class ItemList extends Component
      * @return void
      */
     public function mount(
-        Collection $items,
+        Collection $filteredItems,
         ?int $itemCategoryId = null
     ): void {
-        $this->items = $items;
+        $this->filteredItems = $filteredItems;
         $this->itemCategoryId = $itemCategoryId;
     }
 
     public function onItemCategoryTabClicked(?int $itemCategoryId): void
     {
         $this->itemCategoryId = $itemCategoryId;
-        $this->items = is_null($itemCategoryId) ?
+        $this->filteredItems = is_null($itemCategoryId) ?
             Item::get()
             : Item::where('item_category_id', $itemCategoryId)->get();
+    }
+
+    public function onItemClicked(Item $item): void
+    {
+        $this->emit('addItemToCart', $item);
     }
 
     public function render()

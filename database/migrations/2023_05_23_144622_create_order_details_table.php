@@ -16,6 +16,7 @@ CREATE TABLE `order_details` (
     `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '注文詳細ID',
     `order_id` int(10) UNSIGNED NOT NULL COMMENT '注文ID',
     `item_id` int(10) UNSIGNED NOT NULL COMMENT '商品ID',
+    `quantity` int(10) UNSIGNED NOT NULL COMMENT '数量',
     `created_at` datetime NOT NULL COMMENT '作成日時',
     `updated_at` datetime DEFAULT NULL COMMENT '更新日時',
     PRIMARY KEY (`id`),

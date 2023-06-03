@@ -27,7 +27,7 @@
             'itemCategories' => $itemCategories,
         ])
         @livewire('item-list', [
-            'items' => $items,
+            'filteredItems' => $items,
         ])
         @livewire('cart')
     </div>

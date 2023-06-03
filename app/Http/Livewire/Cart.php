@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\Item;
+use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Util\WireableCollection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Cart extends Component
@@ -23,9 +25,11 @@ class Cart extends Component
      */
     protected $listeners = [
         'addItemToCart',
+        'clear',
         'onPlusCounterClicked',
         'onMinusCounterClicked',
         'onRemoved',
+        'onSaved',
     ];
 
     /**
@@ -55,6 +59,11 @@ class Cart extends Component
         $this->orderDetails->push($orderDetail);
     }
 
+    public function clear(): void
+    {
+        $this->orderDetails = new WireableCollection();
+    }
+
     public function onPlusCounterClicked(int $itemId): void
     {
         $this->orderDetails->firstWhere('item_id', $itemId)->quantity++;
@@ -77,6 +86,30 @@ class Cart extends Component
                 return $orderDetail->item_id === $itemId;
             }
         );
+    }
+
+    public function onSaved(): void
+    {
+        DB::transaction(
+            function () {
+                $order = new Order([
+                    'user_id' => 1, // TODO: デバイス単位で変更・取得する
+                ]);
+                $order->save();
+
+                $this->orderDetails->each(
+                    function ($detail) use ($order) {
+                        $orderDetail = new OrderDetail([
+                            'item_id' => $detail->item_id,
+                            'quantity' => $detail->quantity,
+                        ]);
+                        $order->orderDetails()->save($orderDetail);
+                    }
+                );
+            }
+        );
+
+        $this->emit('clear');
     }
 
     public function render()

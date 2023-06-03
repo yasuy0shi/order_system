@@ -70,7 +70,10 @@
                       </tr>
                     </tbody>
                   </table>
-                <a href="#" class="btn btn-lg btn-primary float-end">注文を確定する</a>
+                <button
+                    class="btn btn-lg btn-primary float-end"
+                    wire:click="$emit('onSaved')"
+                >注文を確定する</a>
             </div>
         </div>
     </div>

@@ -5,11 +5,19 @@
     }
 @endphp
 
-<div id="cart" class="row sticky-bottom align-items-end justify-content-end">
+<div id="cart" class="row sticky-bottom align-items-end justify-content-end collapse show">
     <div class="col-xs-12 col-sm-12 col-md-8">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-lg btn-close float-end" aria-label="Close"></button>
+                <button
+                    type="button"
+                    class="btn btn-lg btn-close float-end"
+                    aria-label="Close"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cart"
+                    aria-expanded="true"
+                >
+                </button>
                 <h4><i class="bi bi-cart4"></i> ご注文内容</h4>
                 <table class="table">
                     <thead>

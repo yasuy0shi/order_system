@@ -21,7 +21,12 @@ class Cart extends Component
      *
      * @var array
      */
-    protected $listeners = ['addItemToCart', 'onRemoved'];
+    protected $listeners = [
+        'addItemToCart',
+        'onPlusCounterClicked',
+        'onMinusCounterClicked',
+        'onRemoved',
+    ];
 
     /**
      * コンポーネントがインスタンス化された直後に呼ばれるライフサイクルフック
@@ -50,14 +55,25 @@ class Cart extends Component
         $this->orderDetails->push($orderDetail);
     }
 
-    public function onPlusCounterClicked(int $orderDetailId): void
+    public function onPlusCounterClicked(int $itemId): void
     {
+        $this->orderDetails->firstWhere('item_id', $itemId)->quantity++;
+    }
+
+    public function onMinusCounterClicked(int $itemId): void
+    {
+        $orderDetail = $this->orderDetails->firstWhere('item_id', $itemId);
+        $orderDetail->quantity--;
+
+        if (0 >= $orderDetail->quantity) {
+            $this->emit('onRemoved', $itemId);
+        }
     }
 
     public function onRemoved(int $itemId): void
     {
         $this->orderDetails = $this->orderDetails->reject(
-            function ($orderDetail, int $key) use ($itemId) {
+            function ($orderDetail) use ($itemId) {
                 return $orderDetail->item_id === $itemId;
             }
         );

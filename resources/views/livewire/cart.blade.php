@@ -31,7 +31,10 @@
                             </td>
                             <td style="min-width: 110px;">
                                 <div class="input-group input-group-sm">
-                                    <button class="btn btn-primary" type="button">
+                                    <button class="btn btn-primary"
+                                        type="button"
+                                        wire:click="$emit('onMinusCounterClicked', {{ $orderDetail->item_id }})"
+                                    >
                                         <i class="bi bi-dash-lg"></i>
                                     </button>
                                     <input type="number"
@@ -39,8 +42,12 @@
                                         min="1"
                                         max="99"
                                         class="form-control text-center"
+                                        readonly
                                     >
-                                    <button class="btn btn-primary" type="button">
+                                    <button class="btn btn-primary"
+                                        type="button"
+                                        wire:click="$emit('onPlusCounterClicked', {{ $orderDetail->item_id }})"
+                                    >
                                         <i class="bi bi-plus-lg"></i>
                                     </button>
                                 </div>

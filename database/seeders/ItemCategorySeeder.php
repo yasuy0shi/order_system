@@ -19,11 +19,11 @@ class ItemCategorySeeder extends Seeder
         DB::table('item_categories')->insert([
             [
                 'id' => 1,
-                'name' => '軽食',
+                'name' => '肉類',
             ],
             [
                 'id' => 2,
-                'name' => 'おつまみ',
+                'name' => '軽食',
             ],
             [
                 'id' => 3,
@@ -32,22 +32,6 @@ class ItemCategorySeeder extends Seeder
             [
                 'id' => 4,
                 'name' => 'ごはん類',
-            ],
-            [
-                'id' => 5,
-                'name' => '肉類',
-            ],
-            [
-                'id' => 6,
-                'name' => 'アルコール',
-            ],
-            [
-                'id' => 7,
-                'name' => 'ソフトドリンク',
-            ],
-            [
-                'id' => 8,
-                'name' => 'レンタル',
             ],
         ]);
     }

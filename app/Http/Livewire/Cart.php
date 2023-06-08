@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Util\WireableCollection;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -92,8 +93,15 @@ class Cart extends Component
     {
         DB::transaction(
             function () {
+                // 注文表示用番号
+                // NOTE: 日毎にインクリメントを行う
+                $displayNumber = Order::lockForUpdate()
+                    ->whereDate('created_at', Carbon::today())
+                    ->count() + 1;
+
                 $order = new Order([
-                    'user_id' => 1, // TODO: デバイス単位で変更・取得する
+                    'display_number' => $displayNumber,
+                    'user_id' => 0, // NOTE: 仮の値として保持のみ行う
                 ]);
                 $order->save();
 
@@ -106,10 +114,11 @@ class Cart extends Component
                         $order->orderDetails()->save($orderDetail);
                     }
                 );
+
+                $this->emit('onOrderShipped', $displayNumber);
+                $this->emit('clear');
             }
         );
-
-        $this->emit('clear');
     }
 
     public function render()

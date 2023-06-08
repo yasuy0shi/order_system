@@ -7,7 +7,6 @@
     aria-labelledby="orderShippedModalLabel"
     aria-hidden="true"
     wire:ignore.self
-    wire:loading.class.remove="show"
 >
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
@@ -24,7 +23,7 @@
                 <p class="text-center">ご注文いただき、ありがとうございます。</p>
                 <p class="text-center">
                     ご注文番号は、
-                    <span class="display-2 lead" wire:loading.remove>
+                    <span class="display-2 lead">
                         <strong>{{ $orderDisplayNumber }}</strong>
                     </span>
                     番です。
@@ -34,14 +33,3 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-<script>
-    Livewire.on('onOrderShipped', (orderDisplayNumber) => {
-        const orderShippedModal = new bootstrap.Modal(
-            document.getElementById('orderShipped')
-        );
-        orderShippedModal.show();
-    });
-</script>
-@endpush

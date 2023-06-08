@@ -81,6 +81,8 @@
                 <button
                     class="btn btn-lg btn-primary float-end"
                     {{ $orderDetails->isEmpty() ? 'disabled' : '' }}
+                    data-bs-toggle="modal"
+                    data-bs-target="#orderShipped"
                     wire:click="$emit('onSaved')"
                 >注文を確定する</a>
             </div>

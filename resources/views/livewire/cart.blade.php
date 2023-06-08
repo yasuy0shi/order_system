@@ -80,8 +80,40 @@
                   </table>
                 <button
                     class="btn btn-lg btn-primary float-end"
+                    data-bs-toggle="modal"
+                    data-bs-target="#orderShipped"
+                    {{ $orderDetails->isEmpty() ? 'disabled' : '' }}
                     wire:click="$emit('onSaved')"
                 >注文を確定する</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div
+    id="orderShipped"
+    class="modal fade"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="orderShippedModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="orderShippedModalLabel" class="modal-title">注文完了</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">ご注文いただき、ありがとうございます。</p>
+                <p class="text-center">
+                    ご注文番号は、
+                    <span class="display-2 lead">
+                        <strong>1</strong>
+                    </span>番です。
+                </p>
+                <p class="text-center">出来上がりましたら、スタッフより番号をお呼びいたします。</p>
             </div>
         </div>
     </div>

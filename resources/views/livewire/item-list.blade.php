@@ -2,7 +2,8 @@
     @foreach ($filteredItems as $item)
     <div class="col">
         <div class="card h-100">
-            <img src="{{ asset('img/noimage.png') }}" class="card-img-top">
+            {{-- 画像が出来次第、表示する --}}
+            {{-- <img src="{{ asset('img/noimage.png') }}" class="card-img-top"> --}}
             <div class="card-body">
                 <h4 class="card-title">{{ $item->name }}</h4>
                 @if (!empty($item->description))

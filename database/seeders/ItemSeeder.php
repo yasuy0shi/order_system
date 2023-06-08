@@ -157,6 +157,48 @@ class ItemSeeder extends Seeder
                 'description' => null,
                 'price' => 300,
             ],
+            [
+                'id' => 21,
+                'item_category_id' => 5,
+                'name' => 'サガリ',
+                'description' => null,
+                'price' => 1000, // 未定
+            ],
+            [
+                'id' => 22,
+                'item_category_id' => 5,
+                'name' => 'カルビ',
+                'description' => null,
+                'price' => 1000, // 未定
+            ],
+            [
+                'id' => 23,
+                'item_category_id' => 5,
+                'name' => '豚トロ',
+                'description' => null,
+                'price' => 1000, // 未定
+            ],
+            [
+                'id' => 24,
+                'item_category_id' => 5,
+                'name' => '鶏せせり',
+                'description' => null,
+                'price' => 1000, // 未定
+            ],
+            [
+                'id' => 25,
+                'item_category_id' => 5,
+                'name' => '塩ホルモン',
+                'description' => null,
+                'price' => 1000, // 未定
+            ],
+            [
+                'id' => 26,
+                'item_category_id' => 5,
+                'name' => '野菜盛り合わせ',
+                'description' => null,
+                'price' => 600,
+            ],
         ]);
     }
 }

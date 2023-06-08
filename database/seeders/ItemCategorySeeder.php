@@ -33,6 +33,10 @@ class ItemCategorySeeder extends Seeder
                 'id' => 4,
                 'name' => 'ごはん類',
             ],
+            [
+                'id' => 5,
+                'name' => '手ぶらでBBQ',
+            ],
         ]);
     }
 }

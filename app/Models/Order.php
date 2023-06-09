@@ -14,6 +14,7 @@ class Order extends Model
     protected $fillable = [
         'display_number',
         'user_id',
+        'status',
     ];
 
     public function orderDetails(): HasMany

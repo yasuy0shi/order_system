@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Enum\OrderStatus;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -102,6 +103,7 @@ class Cart extends Component
                 $order = new Order([
                     'display_number' => $displayNumber,
                     'user_id' => 0, // NOTE: 仮の値として保持のみ行う
+                    'status' => OrderStatus::SHIPPED->value,
                 ]);
                 $order->save();
 

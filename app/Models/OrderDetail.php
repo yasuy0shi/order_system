@@ -18,7 +18,7 @@ class OrderDetail extends Model
 
     public function item(): HasOne
     {
-        return $this->hasOne(Item::class);
+        return $this->hasOne(Item::class, 'id', 'item_id');
     }
 
     public function order(): BelongsTo

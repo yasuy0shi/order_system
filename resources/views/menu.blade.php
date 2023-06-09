@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
+<html lang="ja">
 
 <head>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
-    <title>Menu</title>
+    <title>メニュー</title>
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
@@ -52,10 +52,10 @@ body {
     padding-top: 70px;
 }
 [data-bs-toggle="collapse"].collapsed .if-not-collapsed {
-  display: none;
+    display: none;
 }
 [data-bs-toggle="collapse"]:not(.collapsed) .if-collapsed {
-  display: none;
+    display: none;
 }
 </style>
 </html>

@@ -93,7 +93,7 @@ $unclaimedOrderIdsStr = '[' . implode(',', $unclaimedOrderIds) . ']';
             let u = new SpeechSynthesisUtterance(text);
             u.lang = 'ja-JP';
             u.pitch = 1;
-            u.rate = 0.8;
+            u.rate = 1;
             u.onend = resolve;
             u.onerror = reject;
             speechSynthesis.speak(u);

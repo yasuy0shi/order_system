@@ -19,4 +19,9 @@ class AdminController extends Controller
 
         return view('admin.index', compact('servingOrders'));
     }
+
+    public function banana()
+    {
+        return view('admin.banana');
+    }
 }

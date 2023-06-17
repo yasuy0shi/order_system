@@ -12,6 +12,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('banana', [AdminController::class, 'banana'])->name('banana');
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     });
 });

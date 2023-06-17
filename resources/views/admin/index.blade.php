@@ -18,6 +18,11 @@
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-danger">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('admin.index') }}">管理者ページ</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.banana') }}">バナナボート</a>
+                    </li>
+                </ul>
                 <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
                     <button

@@ -18,21 +18,27 @@
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-danger">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('admin.index') }}">管理者ページ</a>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.banana') }}">バナナボート</a>
-                    </li>
-                </ul>
-                <form method="POST" action="{{ route('admin.logout') }}">
-                    @csrf
-                    <button
-                        class="btn btn-lg btn-danger"
-                        type="button"
-                        onclick="event.preventDefault(); this.closest('form').submit();"
-                    >
-                        <i class="bi bi-door-closed"></i> ログアウト
-                    </button>
-                </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('admin.banana') }}">バナナボート</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <button
+                            class="btn btn-danger"
+                            style="--bs-btn-padding-x: 0rem; --bs-btn-padding-y: 0rem;"
+                            type="button"
+                            onclick="event.preventDefault(); this.closest('form').submit();"
+                        >
+                            <i class="bi bi-door-closed"></i> ログアウト
+                        </button>
+                    </form>
+                </div>
             </div>
         </nav>
     </header>

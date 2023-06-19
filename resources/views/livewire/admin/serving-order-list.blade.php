@@ -56,7 +56,11 @@ $unclaimedOrderIdsStr = '[' . implode(',', $unclaimedOrderIds) . ']';
                 @endforeach
             </ul>
             <hr>
-            <p>小計: ¥{{ number_format($order->orderDetails->sum('item.price')) }}</p>
+            <p>小計: ¥{{ number_format(
+                $order->orderDetails->map(function ($orderDetail) {
+                    return $orderDetail->item->price * $orderDetail->quantity;
+                })->sum()
+            ) }}</p>
             <div class="text-end">
                 @switch($order->status)
                     @case(App\Enum\OrderStatus::SHIPPED->value)

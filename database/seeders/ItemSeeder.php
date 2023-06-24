@@ -153,28 +153,28 @@ class ItemSeeder extends Seeder
             [
                 'id' => 20,
                 'item_category_id' => 5,
-                'name' => '牛カルビ200g',
+                'name' => '牛カルビ200g（BBQ）',
                 'description' => '別途、塩コショウとタレお渡しします。',
                 'price' => 900,
             ],
             [
                 'id' => 21,
                 'item_category_id' => 5,
-                'name' => '豚トロ200g',
+                'name' => '豚トロ200g（BBQ）',
                 'description' => '別途、塩コショウとタレお渡しします。',
                 'price' => 800,
             ],
             [
                 'id' => 22,
                 'item_category_id' => 5,
-                'name' => '鶏せせり200g',
+                'name' => '鶏せせり200g（BBQ）',
                 'description' => '別途、塩コショウとタレお渡しします。',
                 'price' => 800,
             ],
             [
                 'id' => 23,
                 'item_category_id' => 5,
-                'name' => 'フランクフルト1本',
+                'name' => 'フランクフルト1本（BBQ）',
                 'description' => '別途、塩コショウとタレお渡しします。',
                 'price' => 400,
             ],
@@ -195,16 +195,23 @@ class ItemSeeder extends Seeder
             [
                 'id' => 26,
                 'item_category_id' => 5,
-                'name' => 'つぶ4個',
+                'name' => 'つぶ4個（BBQ）',
                 'description' => '別途、塩コショウとタレお渡しします。',
                 'price' => 1000,
             ],
             [
                 'id' => 27,
                 'item_category_id' => 5,
-                'name' => '野菜盛り合わせ',
+                'name' => '野菜盛り合わせ（BBQ）',
                 'description' => '別途、塩コショウとタレお渡しします。',
                 'price' => 600,
+            ],
+            [
+                'id' => 28,
+                'item_category_id' => 5,
+                'name' => 'ライス（BBQ）',
+                'description' => '別途、塩コショウとタレお渡しします。',
+                'price' => 200,
             ],
         ]);
     }

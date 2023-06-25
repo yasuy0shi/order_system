@@ -57,18 +57,22 @@ class ServingOrderList extends Component
         $this->emit('onPolled');
     }
 
-    public function onCooked(int $orderId): void
+    public function onCooked(int $displayNumber): void
     {
-        $order = Order::findOrFail($orderId);
+        $order = Order::whereDate('created_at', Carbon::today())
+            ->where('display_number', $displayNumber)
+            ->first();
         $order->status = OrderStatus::COOKED->value;
         $order->save();
 
         $this->emit('onPolled');
     }
 
-    public function onDelivered(int $orderId): void
+    public function onDelivered(int $displayNumber): void
     {
-        $order = Order::findOrFail($orderId);
+        $order = Order::whereDate('created_at', Carbon::today())
+            ->where('display_number', $displayNumber)
+            ->first();
         $order->status = OrderStatus::DELIVERED->value;
         $order->save();
 

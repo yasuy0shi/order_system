@@ -27,17 +27,17 @@
 }
 
 // 未受け取りの注文番号
-$unclaimedOrderIds = $servingOrders
+$unclaimedDisplayNumbers = $servingOrders
     ->where('status', App\Enum\OrderStatus::COOKED->value)
     ->map->display_number->all();
-$unclaimedOrderIdsStr = '[' . implode(',', $unclaimedOrderIds) . ']';
+$unclaimedDisplayNumbersStr = '[' . implode(',', $unclaimedDisplayNumbers) . ']';
 @endphp
 
 <div>
     <div class="text-end mb-3">
         <button type="button"
             class="btn btn-sm btn-outline-danger"
-            wire:click="$emit('onAnnounceUnclaimedOrderButtonClicked', {{ $unclaimedOrderIdsStr }})"
+            wire:click="$emit('onAnnounceUnclaimedOrderButtonClicked', {{ $unclaimedDisplayNumbersStr }})"
         >
             <i class="bi bi-bell"></i> 未受取者へ放送
         </button>
@@ -75,7 +75,7 @@ $unclaimedOrderIdsStr = '[' . implode(',', $unclaimedOrderIds) . ']';
                     @case(App\Enum\OrderStatus::COOKED->value)
                         <button type="button"
                             class="btn btn-sm btn-warning"
-                            wire:click="$emit('onDelivered', {{ $order->id }})"
+                            wire:click="$emit('onDelivered', {{ $order->display_number }})"
                         >
                             <i class="bi bi-hand-thumbs-up-fill"></i> 渡した
                         </button>
@@ -106,20 +106,20 @@ $unclaimedOrderIdsStr = '[' . implode(',', $unclaimedOrderIds) . ']';
         });
     }
 
-    Livewire.on('onCooked', (orderId) => {
+    Livewire.on('onCooked', (displayNumber) => {
         speechSynthesis.cancel();
 
         new Promise((resolve, reject) => resolve())
-            .then(() => speak(orderId + "番のお客さま、ご注文ができあがりました。"))
+            .then(() => speak(displayNumber + "番のお客さま、ご注文ができあがりました。"))
             .then(() => wait(500))
             .then(() => speak("うけとりぐちへ、いらしてください。"))
             .catch(e => console.log(e));
     });
 
-    Livewire.on('onAnnounceUnclaimedOrderButtonClicked', (orderIds) => {
+    Livewire.on('onAnnounceUnclaimedOrderButtonClicked', (displayNumbers) => {
         speechSynthesis.cancel();
-        const orderIdsStr = orderIds.map(function (orderId) {
-            return orderId + '番';
+        const displayNumbersStr = displayNumbers.map(function (displayNumber) {
+            return displayNumber + '番';
         }).join('と');
 
         new Promise((resolve, reject) => resolve())

@@ -66,7 +66,7 @@ $unclaimedOrderIdsStr = '[' . implode(',', $unclaimedOrderIds) . ']';
                     @case(App\Enum\OrderStatus::SHIPPED->value)
                         <button type="button"
                             class="btn btn-sm btn-danger"
-                            wire:click="$emit('onCooked', {{ $order->id }})"
+                            wire:click="$emit('onCooked', {{ $order->display_number }})"
                             wire:loading.attr="disabled"
                         >
                             <i class="bi bi-bell-fill"></i> できた

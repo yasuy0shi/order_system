@@ -52,7 +52,7 @@ class ServingOrderList extends Component
         ->get();
     }
 
-    public function onAnnounceUnclaimedOrderButtonClicked(array $orderIds): void
+    public function onAnnounceUnclaimedOrderButtonClicked(array $displayNumbers): void
     {
         $this->emit('onPolled');
     }

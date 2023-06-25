@@ -123,7 +123,7 @@ $unclaimedDisplayNumbersStr = '[' . implode(',', $unclaimedDisplayNumbers) . ']'
         }).join('と');
 
         new Promise((resolve, reject) => resolve())
-            .then(() => speak(orderIdsStr + "のお客さま、ご注文ができております。"))
+            .then(() => speak(displayNumbersStr + "のお客さま、ご注文ができております。"))
             .then(() => wait(500))
             .then(() => speak("うけとりぐちへ、いらしてください。"))
             .catch(e => console.log(e));

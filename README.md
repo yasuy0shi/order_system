@@ -1,66 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Order and call system at the beach house
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# The reason why I made this system
 
-## About Laravel
+I am a surfing enthusiast and often ride the waves on the beach in Hokkaido during the summer season. In the summer of 2023, I was consulted by the staff of a beach house with which I had a relationship.  
+One of the problems, and the biggest problem, was that the tasks of taking orders, preparing and serving meals were concentrated on one person. Thus, I made this system for more ease of taking order and serving meals.  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Functions of this system
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This system has 2 main functions: a menu of meals that can be viewed and ordered through a smartphone or tablet, and an audio broadcast to inform people when their meal is ready.  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## A menu of meals
 
-## Learning Laravel
+![menu](screenshots/menu.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+We can see the menu of meals from this page, and can order by tapping the item. The order details are displayed in a floating dialogue in the bottom right-hand corner, where we can cancel the order or increase/decrease the number of pieces.  
+The following dialogue is then displayed by tapping the 'Confirm order' button (The sentence of "注文を確定する" is it.) at the end of the floating dialogue:  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![dialog when order completed](screenshots/dialog_when_order_completed.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+We can confirm the order number.  
 
-## Laravel Sponsors
+## Order list on the staff page
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+On the screen, which can only be seen by staff, the orders described in the previous chapter are stored in this way:
 
-### Premium Partners
+![staff page order list](screenshots/staff_page_order_list.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Staff then prepare the meal as per the respective order and tap the 'meal ready' button ("できた" is it.) when it is ready to be served. When the button tapped, an automated voice played and customers can know the meal has been available for pick-up through the order number.  
 
-## Contributing
+![staff page order list after tapped ready](screenshots/staff_page_order_list_after_ready_button_tapped.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+After tapped the 'meal ready' button, it changes into 'meal served' button ("渡した" is it.). When staff tap it again, the order disappears from the list.  
 
-## Code of Conduct
+## Calling users when banana boat is ready
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The beach house also provides banana boat ride activity. However, there is a waiting period before the activity becomes available. This is because there are preparations such as connecting water bike and banana boat. Therefore, a function was needed to call the user when the banana boat was ready.
 
-## Security Vulnerabilities
+![staff page banana boat ready](screenshots/staff_page_call_banana_boat_ready.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The staff member selects a number from the select box and taps the 'Call' button("呼び出し" is it.). Then, automated voice also played.
 
-## License
+# how to develop on local
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+After cloning this repository and move to the root directory, then do below.
+
+```
+$ sail up -d
+$ sail npm run dev
+```
+
+# The problem
+
+However, as this project was done for free and not for business, I had to adopt a compromised approach.  
+Therefore, I released the system through the free AWS Lightsail slot, hoping that the attackers would not destroy the system. Fortunately, there were no attacks and the system worked successfully for the duration of the season :tada:  
